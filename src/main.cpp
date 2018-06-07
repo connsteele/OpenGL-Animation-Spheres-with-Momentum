@@ -269,25 +269,12 @@ public:
 		P = glm::perspective((float)(3.14159 / 4.), (float)((float)width/ (float)height), 0.1f, 1000.0f); //so much type casting... GLM metods are quite funny ones
 
 
-		//do collision logic stuff
-		static float mass1 = 2, mass2 = 2, sumM = mass1 + mass2; //Mass for each of the spheres
+		//------ 2 spheres properties ------///
+		static float mass1 = 10, mass2 = 4; 
+		static float sumM = mass1 + mass2; //Mass for each of the spheres
 		static vec3 pos1 = vec3(-3, 0, 0), pos2 = vec3(3, 0, 0); //velocities for each of the spheres
-		static float speed1 = 1, speed2 = -1; //pre collision speed 
+		static float speed1 = 1, speed2 = -4; //pre collision speed
 		
-
-		//check if velocity positions are colliding
-		if ( length(pos1 - pos2) < 2 )
-		{
-			static float oldspeed1 = speed1;
-			static float oldspeed2 = speed2;
-
-			//update momentum
-			speed1 = ((mass1 - mass2 / sumM) * oldspeed1) + ((2 * mass2 / sumM) * oldspeed2); //post collision
-			speed2 = ((mass2 - mass1 / sumM) * oldspeed2) + ((2 * mass1 / sumM) * oldspeed1); //post collision
-
-			speed1 = -speed1;
-			speed2 = -speed2;
-		}
 
 		//animation with the model matrix:
 		static float w = 0.0;
@@ -303,10 +290,8 @@ public:
 		M =  TransZ *  RotateX;
 
 		// Draw the spheres using GLSL.
-		prog->bind();		
-
+		prog->bind();
 		
-
 
 		//send the matrices to the shaders
 		glUniformMatrix4fv(prog->getUniform("P"), 1, GL_FALSE, &P[0][0]);
@@ -326,10 +311,26 @@ public:
 		glBindTexture(GL_TEXTURE_2D, Texture2);
 		shape->draw(prog, FALSE);
 
-		pos1.x += speed1 * frametime; //push towards eachother, frame is speed
+
+		////---- Calulcations for sphere collision ------//// 
+		static float oldspeed1 = speed1;
+		static float oldspeed2 = speed2;
+
+		////---- check if velocity positions are colliding -----////
+		if (length(pos1 - pos2) < 2)
+		{
+			//--- update the velocity of the two spheres using momentum
+			speed1 = (( (mass1 - mass2) / sumM) * oldspeed1) + (( (2 * mass2) / sumM) * oldspeed2); //post collision
+			speed2 = (( (mass2 - mass1) / sumM) * oldspeed2) + (( (2 * mass1) / sumM) * oldspeed1); //post collision
+
+		}
+
+
+		//------------ update the pos of the spheres on screen ------------//
+		pos1.x += speed1 * frametime;
 		pos2.x += speed2 * frametime;
 
-		prog->unbind();
+		prog->unbind(); //unbind the shader
 
 	}
 
