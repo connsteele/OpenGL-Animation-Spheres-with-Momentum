@@ -1,0 +1,10 @@
+﻿  main.cpp
+c:\users\gosus\desktop\school\_csc474\midterm2_review\lab momentum\src\main.cpp(47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\gosus\desktop\school\_csc474\midterm2_review\lab momentum\src\main.cpp(51): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\gosus\desktop\school\_csc474\midterm2_review\lab momentum\src\main.cpp(55): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\gosus\desktop\school\_csc474\midterm2_review\lab momentum\src\main.cpp(57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\gosus\desktop\school\_csc474\midterm2_review\lab momentum\src\main.cpp(294): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\gosus\desktop\school\_csc474\midterm2_review\lab momentum\src\main.cpp(296): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gosus\desktop\school\_csc474\midterm2_review\lab momentum\src\main.cpp(329): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\gosus\desktop\school\_csc474\midterm2_review\lab momentum\src\main.cpp(330): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  lab momentum.vcxproj -> C:\Users\gosus\Desktop\School\_CSC474\Midterm2_review\lab momentum\Debug\lab momentum.exe
